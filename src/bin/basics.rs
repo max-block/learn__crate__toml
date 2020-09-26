@@ -1,4 +1,4 @@
-use std::fs;
+use std::{collections::HashMap, fs};
 
 use serde::Deserialize;
 use toml::value::Datetime;
@@ -6,16 +6,16 @@ use toml::value::Datetime;
 #[derive(Deserialize, Debug)]
 struct Data {
     name: String,
-    tags: Vec<String>,
-    link: String,
+    group: String,
+    link: Option<String>,
     description: String,
     created_at: Datetime,
-    archived_at: Option<Datetime>
 }
 
 #[derive(Deserialize, Debug)]
 struct DataRoot {
-    data: Vec<Data>
+    data: Vec<Data>,
+    group_links: HashMap<String, String>
 }
 
 
